@@ -41,10 +41,10 @@ namespace M800_Visualizer
             return binList;
         }
 
-        private float GetPercentOfMaxForBin(float intensityDB, int bin)
+        private float GetPercentOfMaxForBin(float intensity, int bin)
         {
-            bins[bin].AddSample(intensityDB);
-            return intensityDB / bins[bin].MaxDB;
+            bins[bin].AddSample(intensity);
+            return intensity / bins[bin].MaxDB;
         }
     }
 

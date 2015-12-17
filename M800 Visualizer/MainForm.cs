@@ -15,7 +15,7 @@ namespace M800_Visualizer
 
         private IWaveIn waveIn;
 
-        int fftSize = 8192;
+        int fftSize = 4096;
 
         SampleAggregator sampleAggregator;
 
@@ -83,11 +83,11 @@ namespace M800_Visualizer
                 sampleAggregator.GetFFTResults(fftResults);
 
                 // take the first X samples since we get frequency ranges beyond our hearing.
-                float[] fftResults2 = new float[fftSize / 2];
-                Array.Copy(fftResults, 0, fftResults2, 0, fftSize / 2);
+                //float[] fftResults2 = new float[fftSize / 4];
+                //Array.Copy(fftResults, 0, fftResults2, 0, fftSize / 4);
 
                 // we have way too many samples to fit on the keyboard, so bin them in to 23 values
-                List<float> binList = binner.GetBinned(fftResults2);
+                List<float> binList = binner.GetBinned(fftResults);
 
                 // scale the values to bytes before sending them to the keyboard
                 List<byte> scaledList = binList.Select(x => (byte)(x * byte.MaxValue)).ToList();
